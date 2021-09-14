@@ -21,7 +21,7 @@ public class grapple : MonoBehaviour
     }
     private void OnEnable()
     {
-
+        dragForce = 3;
         body.transform.position = new Vector2(owner.transform.position.x, owner.transform.position.y);
         body.velocity = v0;
         txt.text = "grapple enabled v0=" + body.velocity.ToString();

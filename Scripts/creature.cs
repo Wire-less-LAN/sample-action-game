@@ -6,8 +6,6 @@ public class creature : MonoBehaviour
 {
     //values
     public float gravityScale;
-    public float dashForce;
-    public float dashTime;
     public float airDrag;
     public float ordinaryDrag;
     public float speed;
@@ -52,7 +50,7 @@ public class creature : MonoBehaviour
         virtualBody.AddForce(new Vector2(speed * Mathf.Cos(rad), speed * Mathf.Sin(rad)));
         body.AddForce(new Vector2(speed * Mathf.Cos(rad), speed * Mathf.Sin(rad)));
     }
-    public IEnumerator jump()
+    virtual public IEnumerator jump()
     {
         isGrounded = false;
         speed = airSpeed;
@@ -92,10 +90,5 @@ public class creature : MonoBehaviour
             bdy.AddForce(v);
             yield return 0;
         }
-    }
-    public void dash(float angle)
-    {
-        body.gravityScale = 0;
-        StartCoroutine(constForce(new Vector2(dashForce * Mathf.Cos(angle * 2 * Mathf.PI / 360f), dashForce * Mathf.Sin(angle * 2 * Mathf.PI / 360f)), dashTime));
     }
 }
