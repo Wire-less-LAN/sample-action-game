@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class camera : MonoBehaviour
+public class MyCamera : MonoBehaviour
 {
     public Text txt;
     public Rigidbody2D bdy;
+    public creature c;
+    Vector2 e;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        txt.text=bdy.transform.localPosition.y.ToString();
+        e = transform.position + (c.transform.position - transform.position) * 0.01f;
+        transform.position = new Vector3(e.x, e.y, transform.position.z);
+       // print(transform.position);
     }
 }

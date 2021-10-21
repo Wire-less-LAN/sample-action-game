@@ -16,10 +16,15 @@ public class creature : MonoBehaviour
     public float initialHeight;//用于重置阴影和人物位置的初始点位
     public bool isGrounded;
     public bool isDashing;
+    public bool wasWaved;
 
     //components
     public Rigidbody2D virtualBody;
     public Rigidbody2D body;
+    public GameObject staticSpot;
+
+    //others
+    public Coroutine j;
 
     void Awake()
     {
@@ -90,5 +95,14 @@ public class creature : MonoBehaviour
             bdy.AddForce(v);
             yield return 0;
         }
+    }
+    public void Jump()
+    {
+        if (j != null) StopCoroutine(j);
+        j = StartCoroutine(jump());
+    }
+    public void Force(Vector2 v,float time)
+    {
+        StartCoroutine(constForce(v, time));
     }
 }
