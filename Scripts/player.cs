@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : creature
+public class Player : Creature
 {
     float t;
     float tempG;
     Vector2 movingVector;
-    public hand Hand;
-    public grapple Grapple;
+    public Hand Hand;
+    public Grapple grapple;
     public Vector2 grappleVelocity;
     public bool isHit;
     public float grappleVelocityMag = 100f;
@@ -56,7 +56,7 @@ public class player : creature
     }
     void Start()
     {
-        Grapple.owner = this;
+        grapple.owner = this;
     }
 
     // Update is called once per frame
@@ -99,10 +99,10 @@ public class player : creature
         //todo:跳跃时禁用碰撞
 
         //发射钩爪
-        if (!Grapple.isOut && Input.GetMouseButtonDown(0))
+        if (!grapple.isOut && Input.GetMouseButtonDown(0))
         {
-            Grapple.v0 = (UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * grappleVelocityMag;
-            Grapple.gameObject.SetActive(true);
+            grapple.v0 = (UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * grappleVelocityMag;
+            grapple.gameObject.SetActive(true);
         }
 
         //固定碰撞箱
@@ -126,12 +126,12 @@ public class player : creature
         }
 
         //使人物受重力直到掉回原点
-        body.gravityScale = (Grapple.isTied || wasWaved) ? reducedGravityScale : gravityScale;
+        body.gravityScale = (grapple.isTied || wasWaved) ? reducedGravityScale : gravityScale;
         //body.gravityScale = (Grapple.isTied || Grapple.wasWaved) && !isHit ? reducedGravityScale : gravityScale;
         while (body.transform.localPosition.y > initialHeight)
         {
             //if ((Grapple.isTied || Grapple.wasWaved) && !isHit) body.gravityScale = reducedGravityScale;
-            if (Grapple.isTied || wasWaved) body.gravityScale = reducedGravityScale;
+            if (grapple.isTied || wasWaved) body.gravityScale = reducedGravityScale;
             //if (isHit) body.gravityScale = gravityScale;
 
             if (body.transform.localPosition.y > limitHeight) body.velocity = new Vector2(body.velocity.x, virtualBody.velocity.y - body.velocity.y);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class creature : MonoBehaviour
+public class Creature : MonoBehaviour
 {
     //values
     public float gravityScale;

@@ -7,7 +7,7 @@ public class MyCamera : MonoBehaviour
 {
     public Text txt;
     public Rigidbody2D bdy;
-    public creature c;
+    public Creature c;
     Vector2 e;
     // Start is called before the first frame update
     void Start()

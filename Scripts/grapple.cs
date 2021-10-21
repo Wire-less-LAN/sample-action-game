@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class grapple : MonoBehaviour
+public class Grapple : MonoBehaviour
 {
     public Text txt;
     public Rigidbody2D body;
@@ -11,7 +11,7 @@ public class grapple : MonoBehaviour
     public bool isWaved = false;
     public bool wasTied = false;
     public Vector2 v0;
-    public creature owner;
+    public Creature owner;
     public LineRenderer line;
     public float existingTime = 0.5f;
     public float dragForce = 10f;
